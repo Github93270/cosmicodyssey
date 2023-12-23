@@ -17,33 +17,9 @@ export default function Post(props) {
         props.onDelete(props.id);
         handleCloseDeleteModal();
     };
-    const supernova = async() => {
+    const vote = async(path) => {
         try {
-            await sendRequest(`post/supernova/${props.id}`, 'PATCH', null, {Authorization: `Bearer ${ctx.token}`});
-            props.onReload();
-        } catch(err) {
-            return;
-        }
-    };
-    const unSupernova = async() => {
-        try {
-            await sendRequest(`post/unsupernova/${props.id}`, 'PATCH', null, {Authorization: `Bearer ${ctx.token}`});
-            props.onReload();
-        } catch(err) {
-            return;
-        }
-    };
-    const blackhole = async() => {
-        try {
-            await sendRequest(`post/blackhole/${props.id}`, 'PATCH', null, {Authorization: `Bearer ${ctx.token}`});
-            props.onReload();
-        } catch(err) {
-            return;
-        }
-    };
-    const unBlackhole = async() => {
-        try {
-            await sendRequest(`post/unblackhole/${props.id}`, 'PATCH', null, {Authorization: `Bearer ${ctx.token}`});
+            await sendRequest(`post/${path}/${props.id}`, 'PATCH', null, {Authorization: `Bearer ${ctx.token}`});
             props.onReload();
         } catch(err) {
             return;
@@ -69,8 +45,8 @@ export default function Post(props) {
                 )}
                 {ctx.isLoggedIn && props.show && (
                     <div id='vote' style={{marginTop: ctx.userId === props.creator.id ? '-50px' : '0'}} className='buttons'>
-                        <motion.button onClick={props.supernovas.includes(ctx.userId) ? unSupernova : supernova} whileHover={{scale: 1.1, border: '3px outset navy'}}>{props.supernovas.length} ☄️</motion.button>
-                        <motion.button onClick={props.blackholes.includes(ctx.userId) ? unBlackhole : blackhole} whileHover={{scale: 1.1, border: '3px outset navy'}}>{props.blackholes.length} ⚫</motion.button>
+                        <motion.button onClick={() => vote(props.supernovas.includes(ctx.userId) ? 'unsupernova' : 'supernova')} whileHover={{scale: 1.1, border: '3px outset navy'}}>{props.supernovas.length} ☄️</motion.button>
+                        <motion.button onClick={() => vote(props.blackholes.includes(ctx.userId) ? 'unblackhole' : 'blackhole')} whileHover={{scale: 1.1, border: '3px outset navy'}}>{props.blackholes.length} ⚫</motion.button>
                         {error && <h2 className='center invalid'>{error}</h2>}
                     </div>
                 )}
