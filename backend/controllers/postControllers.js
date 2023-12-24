@@ -8,7 +8,7 @@ exports.getPosts = async (req, res, next) => {
         const populatedPosts = await Promise.all(posts.map(post => post.populate('creator')));
         return res.status(200).json({posts: populatedPosts.map(post => post.toObject({ getters: true }))});
     } catch (err) {
-        return res.status(500).json({ message: 'Getting posts failed.' });
+        return res.status(500).json({message: 'Getting posts failed.'});
     }
 };
 
