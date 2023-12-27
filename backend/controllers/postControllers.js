@@ -43,7 +43,6 @@ exports.createPost = async(req, res, next) => {
         await post.save();
         return res.status(201).json({message: 'Post successfully created.'});
     } catch(err) {
-        
         fs.unlink(file, err => console.log(err));
         return res.status(500).json({message: 'Creating post failed.'});
     }
