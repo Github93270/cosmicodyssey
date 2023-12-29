@@ -46,9 +46,9 @@ export default function NewPost() {
             {error && <h2 className='invalid center'>{error}</h2>}
             {!isLoading && (
                 <>
-                    <Input inputType='text' type='input' classes={titleInputClasses} message='Input length must be between 0 and 20 characters.' placeholder='Title' value={titleInput} onChange={handleTitleChange} onBlur={handleTitleBlur} invalid={titleInvalid}/>
+                    <Input inputType='text' type='input' classes={titleInputClasses} message='Input length must be between 0 and 19 characters.' placeholder='Title' value={titleInput} onChange={handleTitleChange} onBlur={handleTitleBlur} invalid={titleInvalid}/>
                     <ImageUpload invalid={fileInvalid} classes={fileInputClasses} filePickerRef={filePickerRef} handlePicked={handlePicked} previewUrl={previewUrl} handlePickImage={handlePickImage} message='File is invalid'/>
-                    <Input type='textarea' classes={descriptionInputClasses} message='Input length must be between 0 and 280 characters.' placeholder='Description' value={descriptionInput} onChange={handleDescriptionChange} onBlur={handleDescriptionBlur} invalid={descriptionInvalid}/>
+                    <Input type='textarea' classes={descriptionInputClasses} message='Input length must be between 0 and 299 characters.' placeholder='Description' value={descriptionInput} onChange={handleDescriptionChange} onBlur={handleDescriptionBlur} invalid={descriptionInvalid}/>
                     <motion.button onClick={handleSubmit} whileHover={{scale: 1.1, border: '3px outset navy'}}>Create Post</motion.button>
                 </>
             )}
