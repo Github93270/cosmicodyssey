@@ -32,7 +32,7 @@ export default function Signup() {
 
             try {
                 const response = await sendRequest('auth/signup', 'POST', formData);
-                ctx.login(response.token, response.userId, response.image);
+                ctx.login(response.token, response.userId, response.image, null);
                 navigate('/');
             } catch(err) {
                 return;
