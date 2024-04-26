@@ -21,7 +21,7 @@ export default function Signup() {
         if (emailValid && passwordValid) {
             try {
                 const response = await sendRequest('auth/login', 'POST', JSON.stringify({email: emailInput, password: passwordInput}), {'Content-Type': 'application/json'});
-                ctx.login(response.token, response.userId, response.image);
+                ctx.login(response.token, response.userId, response.image, null);
                 navigate('/');
             } catch(err) {
                 return;
